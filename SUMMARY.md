@@ -1,6 +1,6 @@
 # Summary
 
 * [Introduction](README.md)
-* [Endpoints](chapter1.md)
+* [Endpoints](endpoints.md)
 * [License](license.md)
 
