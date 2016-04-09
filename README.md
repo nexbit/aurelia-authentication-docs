@@ -1,9 +1,38 @@
-# Aurelia-authentication
+# aurelia-authentication
 
-aurelia-authentication is a token-based authentication plugin for Aurelia. It supports popular social authentication providers such as Google, Twitter, Facebook, LinkedIn, Windows Live, FourSquare, Yahoo, Github, and Instagram. It also provides a local stragegy, i.e. simple username / email and password.
+## Important note
 
-Other OAuth1 and Oauth2 than the above mentioned providers can be simply added by editing the extensible configuration file.
+`jspm i aurelia-authentication` or (for webpack) `npm i aurelia-authentication`. Make sure you update all references to `spoonx/aurelia-authentication` and `spoonx/aurelia-api` and remove the `spoonx/` prefix (don't forget your config.js, package.json, imports and bundles).
 
-Basically, aurelia-authentication does not use any cookies but relies on a JWT (json web token) stored in the local storage of the browser. However, both local storage as well as session storage can be used (via the aurelia-authentication security configuration file).
+## What is aurelia-authentication?
 
-Aurelia-authentication makes use of [aurelia-api](http://aurelia-api.spoonx.org/) for convenient use of the aurelia-fetch-client. Options are available to directly use aurelia-fetch-client instead. If configured, the aurelia authentication token will be sent automatically to your protected API when the user is authenticated.
+> Aurelia-authentication is a token-based authentication plugin for [Aurelia](http://aurelia.io/) with support for popular social authentication providers (Google, Twitter, Facebook, LinkedIn, Windows Live, FourSquare, Yahoo, Github, Instagram) and a local stragegy, i.e. simple username / email and password. It developed of a fork of [paul van bladel's aurelia-auth](https://github.com/paulvanbladel/aurelia-auth/) which itself is a port of the great [Satellizer](https://github.com/sahat/satellizer/) library.
+
+Aurelia-authentication makes local and third-party authentication easy. If your server is setup right, it can be a simple as just to select your server endpoint from your [aurelia-api](https://github.com/SpoonX/aurelia-api) setup, add your third-party client ids and you are ready to go. Basically, aurelia-authentication does not use any cookies but relies on a JWT (json web token) stored in the local storage of the browser:
+
+![JWT in local storage](./pictures/TokenViaDevelopmentTools.png)
+
+You have multiple endpoints? No problem! In the recommended setting,  aurelia-authentication makes use of [aurelia-api](https://github.com/SpoonX/aurelia-api) which can set up multiple endpoints. Just specifiy in your aurelia-authentication configuration which endpoint you want to use for your server and which further endpoints you want to be configured and your token will be sent automatically to your protected API when the user is authenticated.
+
+![Authentication header](./pictures/authHeader.png)
+
+With aurelia-authentication you can:
+
+* Use local or third-party providers to authenticate the user
+* Automatically add your token to requests to the specified endpoints
+* Automatically refresh your token
+* Extensivly customize the settings
+* Use standalone or in conjuction with [aurelia-api](https://github.com/SpoonX/aurelia-api)
+* And more
+
+## How this differs from 'paulvanbladel/aurelia-auth'
+
+This repository was originally a fork of paulvanbladel/aurealia-auth. It was forked when the original repository was in a period of inactivity, and later made into a repository of it's own. As such we often get asked how this repository differs from the original. So, at the time of writing the differences are as follows:
+
+* Provides the option to use endpoints, introduced by [aurelia-api](https://github.com/SpoonX/aurelia-api), which simplifies API access.
+* By using aurelia-api the developer can specify which endpoints require the authentication patch.
+* TypeScript support added through the addition of d.ts (typescript definition) files
+* Lots of bug fixes
+* Refactored code to be more readable and performant
+
+**Aside:** Public SpoonX repositories are open to the community and actively maintained and used by the SpoonX company. They follow a strict deploy cycle with reviews and follow semantic versioning. This ensures code quality control and long term commitment.
