@@ -116,9 +116,9 @@ let currentToken = this.authService.getRefreshToken();
 
 ----------
 
-### .isAuthenticated(asPromise)
+### .isAuthenticated()
 
-Checks if there is a (valid) token in storage. If the token is isExpired BaseConfig.autoUpdateToken===true, a new access token requested using the refesh_toke and 'true' returned meanwhile. If asPromise===true, a promiss to be resolved true or false is returned instead.
+Checks if there is a (valid) token in storage. If the token is isExpired and BaseConfig.autoUpdateToken===true, it returns true and a new access token requested using the refesh_token.
 
 #### Returns
 
@@ -128,16 +128,13 @@ Checks if there is a (valid) token in storage. If the token is isExpired BaseCon
 
 ```js
 let auth = this.authService.isAuthenticated();
-// or
-let authPromise = this.authService.isAuthenticated(true)
-  .then(result => auth = result);
 ```
 
 ----------
 
-### .getTimeLeft()
+### .getTtl()
 
-Gets remaining time till expiration of the access token in seconds
+Gets ttl of the access token in seconds
 
 #### Returns
 
@@ -153,7 +150,7 @@ let timeLeft = this.authService.getTimeLeft();
 
 ### .isTokenExpired()
 
-Gets the current refresh token from storage
+Checks whether the token is expired
 
 #### Returns
 
@@ -169,7 +166,7 @@ let isExpired = this.authService.isTokenExpired();
 
 ### .getTokenPayload()
 
-Gets the current refresh token from storage
+Gets the current token payload from storage
 
 #### Returns
 
