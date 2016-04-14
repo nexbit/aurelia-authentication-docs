@@ -26,7 +26,6 @@ import {AuthService} from 'aurelia-authentication';
 | -------------- | -------------------------------------------------------- |
 | Authentication | The class which manages all the authentication requests  |
 
-
 ----------
 
 ## Methods
@@ -39,8 +38,8 @@ Retrieves (GET) the profile from the BaseConfig.profileUrl. Accepts criteria. If
 
 #### Parameters
 
-| Parameter | Type                     | Description                           |
-| --------- | ------------------------ | ------------------------------------- |
+| Parameter | Type                      | Description                           |
+| --------- | ------------------------- | ------------------------------------- |
 | criteria  | {[{} / number ´/ string]} | An ID, or object of supported filters |
 
 #### Returns
@@ -182,11 +181,11 @@ let isExpired = this.authService.getTokenPayload();
 
 ### .updateToken()
 
-Request new token using the refresh_token. Returns a Promise<boolean> with isAuthenticated(). Parallel calls will resolve with the same server response.
+Request new token using the refresh_token. Returns a Promise< boolean > with isAuthenticated(). Parallel calls will resolve with the same server response.
 
 #### Returns
 
-Promise<boolean> with isAuthenticated() result.
+Promise< boolean > with isAuthenticated() result.
 
 #### Example
 
@@ -198,27 +197,28 @@ this.authService.updateToken()
 ----------
 
 ### .signup(displayName, email, password[, options[, redirectUri]])
+
 ### .signup(credentials[, options[, redirectUri]])
 
 Signup locally using BaseConfig.signupUrl either with credentials strings or an object. Can pass options to aurelia-apis Rest.post request. Logs in if BaseConfig.loginOnSignup is set. Else redirects to BaseConfig.signupRedirect if set. The redirectUri parameter overwrites the BaseConfig.signupRedirect setting. Set to false it prevents redirection and set to a string, will redirect there.
 
 #### Parameters v1
 
-| Parameter     | Type                | Description                           |
-| ------------- | ------------------  | ------------------------------------- |
-| displayName   | string              | Passed on as displayName: displayName |
-| email         | string              | Passed on as email: email             |
-| password      | string              | Passed on as password: password       |
-| [options]     | [{}]                | Options object passed to aurelia-api  |
-| [redirectUri] | [string / boolean]  | redirectUri overwrite.                |
+| Parameter     | Type                    | Description                                          |
+| ------------- | ----------------------- | ---------------------------------------------------- |
+| displayName   | string                  | Passed on as displayName: displayName                |
+| email         | string                  | Passed on as email: email                            |
+| password      | string                  | Passed on as password: password                      |
+| [options]     | [{}]                    | Options object passed to aurelia-api                 |
+| [redirectUri] | [string/0/null/undef ]  | redirectUri overwrite. 0=off, null/undef=use default |
 
 #### Parameters v2
 
-| Parameter     | Type                | Description                           |
-| ------------- | ------------------  | ------------------------------------- |
-| credentials   | {}                  | Passed on credentials object          |
-| [options]     | [{}]                | Options object passed to aurelia-api  |
-| [redirectUri] | [string / boolean]  | redirectUri overwrite.                |
+| Parameter     | Type                    | Description                                          |
+| ------------- | ----------------------- | ---------------------------------------------------- |
+| credentials   | {}                      | Passed on credentials object                         |
+| [options]     | [{}]                    | Options object passed to aurelia-api                 |
+| [redirectUri] | [string/0/null/undef ]  | redirectUri overwrite. 0=off, null/undef=use default |
 
 #### Returns
 
@@ -247,26 +247,27 @@ this.authService.signup({
 ----------
 
 ### .login(email, password[, options[, redirectUri]])
+
 ### .login(credentials[, options[, redirectUri]])
 
 Login locally using BaseConfig.loginUrl either with credentials strings or an object. Can pass options to aurelia-apis Rest.post request. Redirects to BaseConfig.loginRedirect if set. The redirectUri parameter overwrites the BaseConfig.loginRedirect setting. Set to false it prevents redirection and set to a string, will redirect there.
 
 #### Parameters v1
 
-| Parameter     | Type              | Description                           |
-| ------------- | ----------------  | ------------------------------------- |
-| email         | string            | Passed on as email: email             |
-| password      | string            | Passed on as password: password       |
-| [options]     | [{}]              | Options object passed to aurelia-api  |
-| [redirectUri] | [string / boolean | redirectUri overwrite.                |
+| Parameter     | Type                    | Description                                          |
+| ------------- | ----------------------- | ---------------------------------------------------- |
+| email         | string                  | Passed on as email: email                            |
+| password      | string                  | Passed on as password: password                      |
+| [options]     | [{}]                    | Options object passed to aurelia-api                 |
+| [redirectUri] | [string/0/null/undef ]  | redirectUri overwrite. 0=off, null/undef=use default |
 
 #### Parameters v2
 
-| Parameter     | Type               | Description                           |
-| ------------- | ------------------ | ------------------------------------- |
-| credentials   | {}                 | Passed on credentials object          |
-| [options]     | [{}]               | Options object passed to aurelia-api  |
-| [redirectUri] | [string / boolean] | redirectUri overwrite.                |
+| Parameter     | Type                    | Description                                          |
+| ------------- | ----------------------- | ---------------------------------------------------- |
+| credentials   | {}                      | Passed on credentials object                         |
+| [options]     | [{}]                    | Options object passed to aurelia-api                 |
+| [redirectUri] | [string/0/null/undef ]  | redirectUri overwrite. 0=off, null/undef=use default |
 
 #### Returns
 
@@ -299,9 +300,9 @@ Login locally using BaseConfig.loginUrl either with credentials strings or an ob
 
 #### Parameters
 
-| Parameter     | Type                | Description                           |
-| ------------- | ------------------  | ------------------------------------- |
-| [redirectUri] | [string / boolean]  | redirectUri overwrite.                |
+| Parameter     | Type                    | Description                                          |
+| ------------- | ----------------------- | ---------------------------------------------------- |
+| [redirectUri] | [string/0/null/undef ]  | redirectUri overwrite. 0=off, null/undef=use default |
 
 #### Returns
 
@@ -327,11 +328,11 @@ Authenticate with third-party with the BaseConfig.providers settings. Redirects 
 
 #### Parameters
 
-| Parameter     | Type               | Description                           |
-| ------------- | ------------------ | ------------------------------------- |
-| provider      | string             | Provider name of BaseConfig.providers |
-| [redirectUri] | [string / boolean] | redirectUri overwrite.                |
-| [userData]    | [{}]               | userData object passed to provider    |
+| Parameter     | Type                    | Description                                          |
+| ------------- | ----------------------- | ---------------------------------------------------- |
+| provider      | string                  | Provider name of BaseConfig.providers                |
+| [redirectUri] | [string/0/null/undef ]  | redirectUri overwrite. 0=off, null/undef=use default |
+| [userData]    | [{}]                    | userData object passed to provider                   |
 
 #### Returns
 
@@ -352,10 +353,10 @@ Unlink third-party with the BaseConfig.providers settings. Optionally redirects 
 
 #### Parameters
 
-| Parameter     | Type                | Description                             |
-| ------------- | ------------------  | --------------------------------------- |
-| provider      | string              | Provider name from BaseConfig.providers |
-| [redirectUri] | [string]            | redirectUri overwrite.                  |
+| Parameter     | Type                    | Description                                          |
+| ------------- | ----------------------- | ---------------------------------------------------- |
+| provider      | string                  | Provider name of BaseConfig.providers                |
+| [redirectUri] | [string/0/null/undef ]  | redirectUri overwrite. 0=off, null/undef=use default |
 
 #### Returns
 
