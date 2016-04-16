@@ -7,4 +7,5 @@
 * [Options: baseConfig](baseConfig.md)
 * [Api: FetchConfig](api_fetchConfig.md)
 * [Api: AuthService](api_authService.md)
+* [Samples](samples.md)
 * [License](license.md)
