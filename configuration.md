@@ -26,7 +26,7 @@ export function configure(aurelia) {
 
 ## With aurelia-fetch-client
 
-Aurelia-authentication can be used with the aurelia-fetch-client singleton. After configuration the used client is linked under baseConfig.client.
+Aurelia-authentication can be used with the aurelia-fetch-client. After configuration the wrapping aurelia-api client available under baseConfig.client and the httpClient under baseConfig.client.client.
 
 ```js
 import authConfig from './authConfig';
