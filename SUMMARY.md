@@ -2,7 +2,7 @@
 
 * [Introduction](README.md)
 * [Quick start](Quick start.md)
-* [Installation](installing.md)
+* [Configuration](configuration.md)
 * [Usage](usage.md)
 * [Options: baseConfig](baseConfig.md)
 * [Api: FetchConfig](api_fetchConfig.md)
