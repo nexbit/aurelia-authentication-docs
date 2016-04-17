@@ -50,8 +50,6 @@ unlinkMethod: 'get',
 authHeader: 'Authorization',
 // The token name used in the header of API requests that require authentication
 authToken: 'Bearer',
-// The property name used when storing the access token locally
-accessTokenStorage: 'aurelia_access_token',
 // The the property from which to get the access token after a successful login or signup
 accessTokenProp: 'access_token',
 
@@ -73,8 +71,6 @@ useRefreshToken: false,
 autoUpdateToken: true,
 // Oauth Client Id
 clientId: false,
-// The property name used when storing the refresh token locally
-refreshTokenStorage: 'aurelia_refresh_token',
 // The the property from which to get the refresh token after a successful token refresh
 refreshTokenProp: 'refresh_token',
 
@@ -99,6 +95,8 @@ withCredentials: true,
 platform: 'browser',
 // Determines the `window` property name upon which aurelia-authentication data is stored (Default: `window.localStorage`)
 storage: 'localStorage',
+// The key used for storing the authentication response locally
+storageKey = 'aurelia_authentication';
 
 
 // OAuth provider specific related configuration
