@@ -108,8 +108,6 @@ export function configure(aurelia) {
 
 ### Provide a UI for a login, signup and profile
 
-See aurelia-authentication-samples for more details.
-
 Button actions are passed to the corresponding view model via a simple click.delegate:
 
 ```html
