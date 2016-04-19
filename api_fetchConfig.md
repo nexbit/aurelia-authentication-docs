@@ -2,7 +2,7 @@
 
 ## Configuring the aurelia fetch client
 
-Aurelia-authentication uses [aurelia-api](https://github.com/SpoonX/aurelia-api), which has support for [multiple endpointshttps://spoonx-aurelia-api/getting-started#multiple-endpoints).
+Aurelia-authentication uses [aurelia-api](https://github.com/SpoonX/aurelia-api), which has support for [multiple endpoints](https://spoonx-aurelia-api/getting-started#multiple-endpoints).
 By default, aurelia-authentication uses the HttpClient from [aurelia-fetch-client](https://github.com/aurelia/fetch-client) when no specific endpoint has been configured, and if no [default endpoint](https://spoonx-aurelia-api/getting-started#default-endpoint) was configured.
 So, if you want aurelia-authentication to use your **default** endpoint, you only have to configure aurelia-api.
 If you wish to use a **specific** endpoint to have aurelia-authentication talk to, you have to set the `endpoint` config option to a string, being the endpoint name.
@@ -13,24 +13,53 @@ If you are using [aurelia-api](https://spoonx-aurelia-api/), you can simply use 
 
 ## Configure the Fetch Client
 
+### The aurelia Fetch Client singleton
+
 If you don't want to use aurelia-api, you have to configure the aurelia-fetch-client. In your aurelia app file, inject the {FetchConfig} class from aurelia-authentication. We need to explicitly opt-in for the configuration of your fetch client by calling the configure function of the FetchConfig class:
 
 ```js
-import 'bootstrap';
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 import {FetchConfig} from 'aurelia-authentication';
 
-@inject(Router,FetchConfig, AppRouterConfig )
+@inject(Router,FetchConfig)
 export class App {
 
-  constructor(router, fetchConfig, appRouterConfig){
+  constructor(router, fetchConfig) {
     this.router = router;
     this.fetchConfig = fetchConfig;
+    //...
   }
 
-  activate(){
+  activate() {
+    // this will add the interceptor for the Authorization header to the HttpClient singleton
     this.fetchConfig.configure();
   }
 }
+```
+
+### An own Fetch Client, Rest Client or endpoint
+
+You also can configure you own Fetch Client instance:
+
+```js
+this.fetchConfig.configure(new HttpClient);
+```
+
+Or a Rest Client instance:
+
+```js
+this.fetchConfig.configure(new Rest);
+```
+
+Or an enpoint by name:
+
+```js
+this.fetchConfig.configure('api');
+```
+
+Or any of the above in an Array:
+
+```js
+this.fetchConfig.configure(['api', 'github']);
 ```

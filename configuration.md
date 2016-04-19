@@ -23,10 +23,9 @@ export function configure(aurelia) {
   });
 ```
 
-
 ## With aurelia-fetch-client
 
-Aurelia-authentication can be used with the aurelia-fetch-client. After configuration the wrapping aurelia-api client available under baseConfig.client and the httpClient under baseConfig.client.client.
+Aurelia-authentication can be used with the aurelia-fetch-client. After configuration, the HttpClient is wrapped automatically in an aurelia-api Rest client. The Rest client is then available under baseConfig.client or authService.client and the HttpClient under baseConfig.client.client or authService.client.client.
 
 ```js
 import authConfig from './authConfig';
@@ -39,7 +38,7 @@ export function configure(aurelia) {
         baseConfig.configure(authConfig);
     });
 
-    /* baseConfig.client is the aurelia-api rest client. The httpClient is the baseConfig.client.client */
+    /* At this point, baseConfig.client is the aurelia-api Rest client. The HttpClient is the baseConfig.client.client */
     baseConfig.client.client
       .withBaseUrl('api/')
       .withDefaults({
@@ -87,7 +86,7 @@ export function configure(aurelia) {
           configureEndpoints: ['auth', 'api'] // '' for the default endpoint
         });
 
-        /* baseConfig.client is the aurelia-api rest client from the 'auth' endpoint. The httpClient is baseConfig.client.client */
+        /* At this point, baseConfig.client is the aurelia-api Rest client from the 'auth' endpoint. The HttpClient is baseConfig.client.client */
     });
   });
 ```

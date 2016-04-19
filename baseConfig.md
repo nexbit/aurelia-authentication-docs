@@ -199,4 +199,4 @@ providers: {
 }
 ```
 
-More non Aurelia specific details can be found on the [Sattelizer Github page](https://github.com/sahat/satellizer/).
+More non-Aurelia specific details can be found on the [Sattelizer Github page](https://github.com/sahat/satellizer/).

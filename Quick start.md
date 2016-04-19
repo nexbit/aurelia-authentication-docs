@@ -18,13 +18,14 @@ Now it's time to start doing something
 
 First, head on over to your favorite terminal and run `jspm install aurelia-api aurelia-authentication` from your project root. This will install the module and aurelia-api to make using this module even easier.
 
-
 ### Configuration
 
-Add an javascript file to your project where you will store the aurelia-authentication  security configuration data. Call it for example authConfig.js.
-Since this file is available via the browser, it should never contain sensitive data. Note that for OAuth the clientId is non sensitive. The client secret is sensitive data and should be only available server side. The aurelia-authentication config file is compatible with the original Satellizer config file, easing the migration of AngularJs projects to Aurelia.
+Add a javascript file to your project where you will store the aurelia-authentication configuration data. Call it for example authConfig.js.
+Since this file is available via the browser, it should never contain sensitive data. Note that for OAuth the clientId is non sensitive. The client secret is sensitive data and should be only available server side. The aurelia-authentication config file is compatible with the original [Satellizer](https://github.com/sahat/satellizer/) config file, making it easy to find more configuration options and server configuration examples.
 
-Aurelia-authentication uses [aurelia-api](https://github.com/SpoonX/aurelia-api). Set here the aurelia-api endpoint for the authorization requests and specify all endpoints you want to have configured for authorized requests. The aurelia token will be added to requests to those endpoints.
+Aurelia-authentication uses [aurelia-api](https://github.com/SpoonX/aurelia-api). This allows you to specify here the aurelia-api endpoint for the authorization requests and to list all endpoints you want to have configured for authorized requests. The access token will be added to all requests to those endpoints.
+
+Here is a sample of a close to minimal custom setting:
 
 ```js
 var baseConfig = {
@@ -76,11 +77,11 @@ export default config;
 
 The above configuration file can cope with a development and production version (not mandatory of course). The strategy is that when your run on localhost, the development configuration file is used, otherwise the production configuration file is taken.
 
-### Update the aurelia configuration file
+### Register the plugin
 
-In your aurelia configuration file, add the plugin and inject the aurelia-authentication security configuration file.
+In your aurelia configuration file, add the plugin and inject above aurelia-authentication configuration file.
 
-While not mandantory, aurelia-authentication is easiest to use in conjunction with [aurelia-api](https://github.com/SpoonX/aurelia-api). Aurelia-api allows to setup several endpoints for Rest services. This can be used to seperate public and protected routes. For that, we first need to register the endpoints with aurelia-api. Bellow we setup the endpoints 'auth' and 'protected-api'. These will be setup in the proceeding aurelia-authentication-plugin configuration for authorized access (specified in above authConfig.js example). The endpoint 'public-api' bellow could be used for public access only, since we didn't add it above to the 'configureEndpoints' array and thus the access token will not be added by aurelia-authentication.
+While not mandantory, aurelia-authentication is easiest to use in conjunction with [aurelia-api](https://github.com/SpoonX/aurelia-api). Aurelia-api allows to setup several endpoints for Rest services. This can be used to seperate public and protected routes. For that, we first need to register the endpoints with aurelia-api. Bellow we setup the endpoints 'auth' and 'protected-api'. These will be setup in the proceeding aurelia-authentication configuration for authorized access (specified in above authConfig.js example). The endpoint 'public-api' bellow could be used for public access only. Since we didn't add it above to the 'configureEndpoints' array and the access token will not be added to it by aurelia-authentication.
 
 ```js
 import authConfig from './authConfig';
@@ -143,7 +144,7 @@ export class Login {
     };
 
     authenticate(name) {
-        return this.auth.authenticate(name, false, null)
+        return this.auth.authenticate(name)
         .then(response => {
             console.log("auth response " + response);
         });

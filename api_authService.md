@@ -10,9 +10,9 @@ import {AuthService} from 'aurelia-authentication';
 
 ### .client
 
-| Type       | Description                                                    |
-| ---------- | -------------------------------------------------------------- |
-| HttpClient | The configured HttpClient used for all authentication requests |
+| Type | Description                                                                   |
+| ---- | ----------------------------------------------------------------------------- |
+| Rest | The configured aurelia-api Rest instance used for all authentication requests |
 
 ### .config
 
@@ -22,9 +22,9 @@ import {AuthService} from 'aurelia-authentication';
 
 ### .authentication
 
-| Type           | Description                                              |
-| -------------- | -------------------------------------------------------- |
-| Authentication | The class which manages all the authentication requests  |
+| Type           | Description                                                               |
+| -------------- | ------------------------------------------------------------------------- |
+| Authentication | The Authentication instance which manages all the authentication requests |
 
 ----------
 
@@ -117,7 +117,7 @@ let currentToken = this.authService.getRefreshToken();
 
 ### .isAuthenticated()
 
-Checks if there is a (valid) token in storage. If the token is isExpired and BaseConfig.autoUpdateToken===true, it returns true and a new access token requested using the refesh_token.
+Checks if there is a (valid) token in storage. If the token is isExpired and  BaseConfig.autoUpdateToken===true, it returns true and a new access token automatically requested using the refesh_token.
 
 #### Returns
 
@@ -153,7 +153,7 @@ Checks whether the token is expired
 
 #### Returns
 
-A `boolean` for JWT or `null` for other tokens.
+A `boolean` for JWT or `undefined` for other tokens.
 
 #### Example
 
@@ -181,11 +181,11 @@ let isExpired = this.authService.getTokenPayload();
 
 ### .updateToken()
 
-Request new token using the refresh_token. Returns a Promise< boolean > with isAuthenticated(). Parallel calls will resolve with the same server response.
+Request a new token using the refresh_token. Returns a Promise< boolean > with the isAuthenticated() result afterwards. Parallel calls will resolve with the same server response.
 
 #### Returns
 
-Promise< boolean > with isAuthenticated() result.
+Promise< boolean > with the isAuthenticated() result.
 
 #### Example
 
@@ -200,7 +200,7 @@ this.authService.updateToken()
 
 ### .signup(credentials[, options[, redirectUri]])
 
-Signup locally using BaseConfig.signupUrl either with credentials strings or an object. Can pass options to aurelia-apis Rest.post request. Logs in if BaseConfig.loginOnSignup is set. Else redirects to BaseConfig.signupRedirect if set. The redirectUri parameter overwrites the BaseConfig.signupRedirect setting. Set to false it prevents redirection and set to a string, will redirect there.
+Signup locally using BaseConfig.signupUrl either with credentials strings or an object. Can pass options to aurelia-apis Rest.post request. Logs in if BaseConfig.loginOnSignup is set. Else redirects to BaseConfig.signupRedirect if set. The redirectUri parameter overwrites the BaseConfig.signupRedirect setting. Set to 0 it prevents redirection and set to a string, will redirect there.
 
 #### Parameters v1
 
@@ -250,7 +250,7 @@ this.authService.signup({
 
 ### .login(credentials[, options[, redirectUri]])
 
-Login locally using BaseConfig.loginUrl either with credentials strings or an object. Can pass options to aurelia-apis Rest.post request. Redirects to BaseConfig.loginRedirect if set. The redirectUri parameter overwrites the BaseConfig.loginRedirect setting. Set to false it prevents redirection and set to a string, will redirect there.
+Login locally using BaseConfig.loginUrl either with credentials strings or an object. Can pass options to aurelia-apis Rest.post request. Redirects to BaseConfig.loginRedirect if set. The redirectUri parameter overwrites the BaseConfig.loginRedirect setting. Set to 0 it prevents redirection and set to a string, will redirect there.
 
 #### Parameters v1
 
@@ -296,7 +296,7 @@ this.authService.signup({
 
 ### .logout([redirectUri])
 
-Login locally using BaseConfig.loginUrl either with credentials strings or an object. Can pass options to aurelia-apis Rest.post request. Redirects to BaseConfig.loginRedirect if set. The redirectUri parameter overwrites the BaseConfig.loginRedirect setting. Set to false it prevents redirection and set to a string, will redirect there.
+Login locally using BaseConfig.loginUrl either with credentials strings or an object. Can pass options to aurelia-apis Rest.post request. Redirects to BaseConfig.loginRedirect if set. The redirectUri parameter overwrites the BaseConfig.loginRedirect setting. Set to 0 it prevents redirection and set to a string, will redirect there.
 
 #### Parameters
 
@@ -324,7 +324,7 @@ this.authService.logout()
 
 ### .authenticate(name[, redirectUri[, userData]])
 
-Authenticate with third-party with the BaseConfig.providers settings. Redirects to BaseConfig.loginRedirect if set. The redirectUri parameter overwrites the BaseConfig.loginRedirect setting. Set to false it prevents redirection and set to a string, will redirect there. An optional userData object can be passed on to the thrird-party server.
+Authenticate with third-party with the BaseConfig.providers settings. Redirects to BaseConfig.loginRedirect if set. The redirectUri parameter overwrites the BaseConfig.loginRedirect setting. Set to 0 it prevents redirection and set to a string, will redirect there. An optional userData object can be passed on to the thrird-party server.
 
 #### Parameters
 
@@ -370,3 +370,7 @@ this.authService.unlink('facebook', '#/facebook-post-unlink')
     console.log(response);
   });  
 ```
+
+----------
+
+*Note*: The redirectUri options might seem unusual. This is to provide backwards compatibility.
