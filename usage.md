@@ -2,7 +2,7 @@
 
 ## Add a configuration file
 
-Set your custom configuration. You can find  all options and the default values in the [baseConfig](baseConfig.md).
+Set your custom configuration. You can find all options and the default values in the [baseConfig](baseConfig.md).
 
 ```js
 /* authConfig.js */
@@ -64,7 +64,7 @@ export class Login {
         });
     }
 
-    // use authenticate(providerName) to get third-party authenticaten
+    // use authenticate(providerName) to get third-party authentication
     authenticate(name) {
       return this.authService.authenticate(name)
         .then(response => {
