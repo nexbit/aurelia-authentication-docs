@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [Quick start](Quick start.md)
+* [Installation](installation.md)
 * [Configuration](configuration.md)
 * [Usage](usage.md)
 * [Options: BaseConfig](baseConfig.md)
