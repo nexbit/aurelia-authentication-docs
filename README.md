@@ -25,7 +25,7 @@ With aurelia-authentication you can:
 
 ## Important note
 
-The package name has changed (to make life easier). For installation, use `jspm i aurelia-authentication` or (for webpack) `npm i aurelia-authentication`. Make sure you update all references to `spoonx/aurelia-authentication` and `spoonx/aurelia-api` and remove the `spoonx/` prefix (don't forget your config.js, package.json, imports and bundles).
+The package name has changed (to make life easier). For installation, use `jspm i aurelia-authentication` or (for webpack) `npm i aurelia-authentication --save`. Make sure you update all references to `spoonx/aurelia-authentication` and `spoonx/aurelia-api` and remove the `spoonx/` prefix (don't forget your config.js, package.json, imports and bundles).
 
 ## How this differs from 'paulvanbladel/aurelia-auth'
 
